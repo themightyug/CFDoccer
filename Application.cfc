@@ -5,10 +5,11 @@
 	ross, 26/03/2013, creation
 
 --->
-<cfcomponent output="false" displayname="Application">
+<cfcomponent name="Application" output="false" displayname="Application">
 	<cfset This.name = "CFDoccer">
 	<cfset This.Sessionmanagement = true>
-	<cfset This.applicationtimeout = "#createtimespan(5,0,0,0)#">
+	<cfset This.applicationtimeout = "#createtimespan(0,0,0,1)#">
+	<cfset This.sessiontimeout = "#CreateTimeSpan(0,0,0,1)#">
 
 
 	<cffunction name="OnApplicationStart">
@@ -30,17 +31,28 @@
 
 
 	<cffunction name="OnSessionStart">
-		<cfset request.Global = structnew()>
+		<cfset session.Global = StructNew()>
 
 		<cfif application.ServerRole eq "development">
-			<cfset request.Global.CfcPrefix = "cfdoccer.cfc.">
-			<cfset request.Global.DSN = "cfdoccer">
+			<cfset session.Global.CfcPrefix = "cfdoccer.cfc.">
+			<cfset session.Global.DSN = "cfdoccer">
 		<cfelseif application.ServerRole eq "live">
 
 		</cfif>
 
 		<cfreturn true>
 	</cffunction>
+
+
+	<cffunction name="OnRequest">
+		<cfargument type="String" name="targetPage" required="true"/>
+
+		<cfset session.Global.test = "moo">
+		<cfset variables.global = session.Global>
+
+		<cfinclude template="#arguments.targetPage#">
+	</cffunction>
+
 
 
 </cfcomponent>

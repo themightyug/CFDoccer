@@ -34,10 +34,10 @@
 		<cfset var local = structnew()>
 
 		<cfquery result="local.q" datasource="#global.DSN#">
-			INSERT INTO project (
-				proj_cfc_root,
-				proj_name,
-				proj_path
+			INSERT INTO APP."project" (
+				"proj_cfc_root",
+				"proj_name",
+				"proj_path"
 			) VALUES (
 				'#arguments.project.proj_cfc_root#',
 				'#arguments.project.proj_name#',
@@ -53,13 +53,13 @@
 		<cfargument name="project" required="yes">
 
 		<cfquery datasource="#global.DSN#">
-			UPDATE project
+			UPDATE APP."project"
 			SET
-				proj_cfc_root = '#arguments.project.proj_cfc_root#',
-				proj_name = '#arguments.project.proj_name#,
-				proj_path = '#arguments.project.proj_path#'
+				"proj_cfc_root" = '#arguments.project.proj_cfc_root#',
+				"proj_name" = '#arguments.project.proj_name#,
+				"proj_path" = '#arguments.project.proj_path#'
 			WHERE
-				proj_id = #val(arguments.project.proj_id)#
+				"proj_id" = #val(arguments.project.proj_id)#
 		</cfquery>
 	</cffunction>
 
@@ -69,9 +69,9 @@
 
 		<cfquery datasource="#global.DSN#">
 			DELETE FROM
-				project
+				APP."project"
 			WHERE
-				proj_id = #val(arguments.project.proj_id)#
+				"proj_id" = #val(arguments.project.proj_id)#
 		</cfquery>
 	</cffunction>
 
@@ -85,9 +85,9 @@
 			SELECT
 				*
 			FROM
-				project
+				APP."project"
 			WHERE
-				proj_id = #val(arguments.proj_id)#
+				"proj_id" = #val(arguments.proj_id)#
 		</cfquery>
 
 		<cfreturn local.q>
@@ -101,9 +101,9 @@
 			SELECT
 				*
 			FROM
-				project
+				APP."project"
 			ORDER BY
-				proj_name
+				"proj_name"
 		</cfquery>
 
 		<cfreturn local.q>
