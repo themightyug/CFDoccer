@@ -40,15 +40,53 @@
 
 		</cfif>
 
+		<cfparam name="session.msg" default="">
+
 		<cfreturn true>
+	</cffunction>
+
+
+	<cffunction name="OnRequestStart">
+		<cfargument type="String" name="template" required="true">
+
+		<cfset var local = StructNew()>
+
+		<cfset local.basePath = getDirectoryFromPath(
+			getCurrentTemplatePath()
+		)/>
+		<cfset local.targetPath = getDirectoryFromPath(
+			expandPath(arguments.template)
+		)/>
+		<cfset local.requestDepth = (
+			listLen( local.targetPath, "\/" ) -
+			listLen( local.basePath, "\/" )
+		)/>
+		<cfset request.webRoot = repeatString(
+			"../",
+			local.requestDepth
+		)/>
+		<cfif local.requestDepth eq 0>
+			<cfset request.webRoot = "./">
+		</cfif>
+
+		<cfset session.Global.Root = request.webRoot>
+		<cfset session.Global.Path = StructNew()>
+		<cfset session.Global.Path.Includes = session.Global.Root & "_ssi/">
+
+		<cfset session.Global.Url = StructNew()>
+		<cfset session.Global.Url.Css = session.Global.Root & "css/">
+		<cfset session.Global.Url.Js = session.Global.Root & "js/">
 	</cffunction>
 
 
 	<cffunction name="OnRequest">
 		<cfargument type="String" name="targetPage" required="true"/>
 
-		<cfset session.Global.test = "moo">
 		<cfset variables.global = session.Global>
+
+		<cfset var PageData = CreateObject("component", "#variables.global.CfcPrefix#Page")>
+		<cfset PageData.Init(variables.global)>
+		<cfset variables.Page = PageData.NewPage()>
 
 		<cfinclude template="#arguments.targetPage#">
 	</cffunction>

@@ -23,6 +23,8 @@
 		<cfset local.project.proj_cfc_root = "">
 		<cfset local.project.proj_name = "">
 		<cfset local.project.proj_path = "">
+		<cfset local.project.proj_refreshed = "">
+		<cfset local.project.proj_doc_url = "">
 
 		<cfreturn local.project>
 	</cffunction>
@@ -37,11 +39,13 @@
 			INSERT INTO APP."project" (
 				"proj_cfc_root",
 				"proj_name",
-				"proj_path"
+				"proj_path",
+				"proj_doc_url"
 			) VALUES (
 				'#arguments.project.proj_cfc_root#',
 				'#arguments.project.proj_name#',
-				'#arguments.project.proj_path#'
+				'#arguments.project.proj_path#',
+				'#arguments.project.proj_doc_url#'
 			)
 		</cfquery>
 
@@ -56,10 +60,25 @@
 			UPDATE APP."project"
 			SET
 				"proj_cfc_root" = '#arguments.project.proj_cfc_root#',
-				"proj_name" = '#arguments.project.proj_name#,
-				"proj_path" = '#arguments.project.proj_path#'
+				"proj_name" = '#arguments.project.proj_name#',
+				"proj_path" = '#arguments.project.proj_path#',
+				"proj_refreshed" = #iif(arguments.project.proj_refreshed eq "", de("NULL"), "CreateODBCDateTime(arguments.project.proj_refreshed)")#,
+				"proj_doc_url" = '#arguments.project.proj_doc_url#'
 			WHERE
 				"proj_id" = #val(arguments.project.proj_id)#
+		</cfquery>
+	</cffunction>
+
+
+	<cffunction name="UpdateRefreshed">
+		<cfargument name="proj_id" required="yes">
+
+		<cfquery datasource="#global.DSN#">
+			UPDATE APP."Project"
+			SET
+				"proj_refreshed" = #CreateODBCDateTime(Now())#
+			WHERE
+				"proj_id" = #val(arguments.proj_id)#
 		</cfquery>
 	</cffunction>
 
@@ -71,7 +90,7 @@
 			DELETE FROM
 				APP."project"
 			WHERE
-				"proj_id" = #val(arguments.project.proj_id)#
+				"proj_id" = #val(arguments.proj_id)#
 		</cfquery>
 	</cffunction>
 

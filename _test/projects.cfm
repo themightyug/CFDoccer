@@ -11,13 +11,13 @@
 <cfset ProjectData.Init(global)>
 
 
+
 <cfset qProject = ProjectData.SelectAll()>
 
 
 <cfoutput>
-
+	<cfdump var="#global#">
 
 	<cfdump var="#qProject#">
-
 
 </cfoutput>
