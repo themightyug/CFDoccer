@@ -19,6 +19,7 @@
 				@import "#global.Url.Css##css#";
 			</cfloop>
 		</style>
+		<script src="#global.Url.Js#jquery-1.9.1.min.js" type="text/javascript"></script>
 		<cfloop list="#Page.Js#" index="js">
 			<script src="#global.Url.Js##js#" type="text/javascript"></script>
 		</cfloop>

@@ -40,6 +40,9 @@
 
 		</cfif>
 
+		<cfset session.Global.DateFormat = "dd/mm/yyyy">
+		<cfset session.Global.TimeFormat = "HH:mm:ss">
+
 		<cfparam name="session.msg" default="">
 
 		<cfreturn true>
@@ -76,6 +79,7 @@
 		<cfset session.Global.Url = StructNew()>
 		<cfset session.Global.Url.Css = session.Global.Root & "css/">
 		<cfset session.Global.Url.Js = session.Global.Root & "js/">
+		<cfset session.Global.Url.Img = session.Global.Root & "img/">
 	</cffunction>
 
 

@@ -1,6 +1,6 @@
 @CHARSET "UTF-8";
 
-BODY {
+body {
 	margin: 0px;
 	padding: 0px;
 	width: 100%;
@@ -49,26 +49,26 @@ BODY {
 }
 
 
-H1 {
+h1 {
 	margin-top: 0px;
 	color: #644113;
 }
 
-A, A:visited {
+a, a:visited {
 	color: #294A63;
 	text-decoration: none;
 }
 
-A:hover {
+a:hover {
 	color: #638FB1;
 	text-decoration: underline;
 }
 
-NAV {
+nav {
 	margin-bottom: 12px;
 }
 
-NAV A, NAV A:visited {
+nav a, nav a:visited {
 	-webkit-border-radius: 8px;
 	-moz-border-radius: 8px;
 	padding: 4px;
@@ -76,17 +76,17 @@ NAV A, NAV A:visited {
 	color: white;
 }
 
-NAV A:hover {
+nav a:hover {
 	color: #645013;
 	background-color: white;
 }
 
 
-TABLE.dataGrid, TABLE.dataForm {
+table.dataGrid, table.dataForm {
 	width: 100%;
 	margin-top: 20px;
 }
-TABLE CAPTION {
+table caption {
 	-webkit-border-top-left-radius: 8px;
 	-webkit-border-top-right-radius: 8px;
 	-moz-border-radius-topleft: 8px;
@@ -99,27 +99,27 @@ TABLE CAPTION {
 	color: #644113;
 	padding: 4px;
 }
-TABLE TH {
+table th {
 	background-color: #9A7139;
 	color: white;
 }
 
-TABLE.dataForm TH {
+table.dataForm th {
 	text-align: right;
 	padding-right: 10px;
 }
 
-TABLE.dataForm TD {
+table.dataForm td {
 	width: 67%;
 }
 
-INPUT[type=text], INPUT[type=url] {
+input[type=text], input[type=url] {
 	width: 90%;
 	border: solid 1px #644113;
 	padding: 4px;
 }
 
-INPUT[type=submit] {
+input[type=submit] {
 	-webkit-border-radius: 8px;
 	-moz-border-radius: 8px;
 	
@@ -131,11 +131,40 @@ INPUT[type=submit] {
 	padding: 8px;
 	font-weight: bold;
 }
-INPUT[type=submit]:hover {
+input[type=submit]:hover {
 	background-color: #CCAE86;
 	color: #644113;
 }
 
 .buttonRow {
 	text-align: right;
+}
+
+
+
+.dialogue {
+	width: 34%;
+	margin: auto;
+	padding: 20px;
+	border: 1px solid #644113;
+	color: #644113;
+	
+	-webkit-border-radius: 16px;
+	-moz-border-radius: 16px;
+	
+	-webkit-box-shadow: 0px 0px 10px 10px rgba(0, 0, 0, 0.2);
+	box-shadow: 0px 0px 10px 10px rgba(0, 0, 0, 0.2);
+}
+section.buttonRow {
+	margin-top: 20px;
+}
+
+.working {
+	display: none;
+	height: 32px;
+}
+.working IMG {
+	height: 32px;
+	width: 32px;
+	float: right;
 }
