@@ -32,7 +32,7 @@
 
 
 	<cffunction name="Create">
-		<cfargument name="component" required="yes">
+		<cfargument name="function" required="yes">
 
 		<cfset var local = structnew()>
 
@@ -49,7 +49,7 @@
 				'#arguments.function.func_name#',
 				#Val(arguments.function.func_line)#,
 				'#arguments.function.func_hint#',
-				'#arguments.function.fun_returns#',
+				'#arguments.function.func_returns#',
 				'#arguments.function.func_comments#'
 			)
 		</cfquery>
@@ -59,7 +59,7 @@
 
 
 	<cffunction name="Update">
-		<cfargument name="component" required="yes">
+		<cfargument name="function" required="yes">
 
 		<cfquery datasource="#global.DSN#">
 			UPDATE APP."function"

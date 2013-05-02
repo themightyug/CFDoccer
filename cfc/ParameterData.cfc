@@ -32,7 +32,7 @@
 
 
 	<cffunction name="Create">
-		<cfargument name="component" required="yes">
+		<cfargument name="parameter" required="yes">
 
 		<cfset var local = structnew()>
 
@@ -50,7 +50,7 @@
 				'#arguments.parameter.param_name#',
 				#Val(arguments.parameter.param_order)#,
 				'#arguments.parameter.param_hint#',
-				#Val(arguments.parameter.fun_required)#,
+				#Iif(Val(arguments.parameter.param_required) eq 0, de("false"), de("true"))#,
 				'#arguments.parameter.param_default#',
 				'#arguments.parameter.param_type#'
 			)
@@ -61,7 +61,7 @@
 
 
 	<cffunction name="Update">
-		<cfargument name="component" required="yes">
+		<cfargument name="parameter" required="yes">
 
 		<cfquery datasource="#global.DSN#">
 			UPDATE APP."parameter"

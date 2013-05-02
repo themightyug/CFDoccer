@@ -56,29 +56,58 @@
 	<cffunction name="ScanComponents" enablecfoutput="true">
 		<cfset var local = structnew()>
 
+		<cfset local.ComponentData = CreateObject("component", "#global.CfcPrefix#ComponentData")>
+		<cfset local.ComponentData.Init(global)>
+
+		<cfset local.FunctionData = CreateObject("component", "#global.CfcPrefix#FunctionData")>
+		<cfset local.FunctionData.Init(global)>
+
+		<cfset local.ParameterData = CreateObject("component", "#global.CfcPrefix#ParameterData")>
+		<cfset local.ParameterData.Init(global)>
+
 		<cfset local.parser = CreateObject("component", "#global.CfcPrefix#ComponentParser")>
 		<cfset local.parser.Init(global)>
 
 		<cfoutput>
 
+			<div>Flushing existing data from the database...</div>
+			<cfset local.ComponentData.ClearProject(proj.proj_id)>
+
 			<cfloop from="1" to="#ArrayLen(qComp)#" index="local.i">
 				<cfset local.cfc_path = ComponentPath(qComp[local.i])>
-				<div class="status">Opening #local.cfc_path#</div>
+				<br/><br/><div class="status">Opening #local.cfc_path#</div>
 
 				<cfset local.cfc = FileRead(local.cfc_path)>
 				<div class="status">File size: #LSNumberFormat(Len(local.cfc))# bytes</div>
 
 				<cfset local.parser.SetDocument(local.cfc)>
 
+				<!--- cfcomponent --->
 				<cfset local.component_data = local.parser.GetComponentData()>
-
 				<cfset local.component_data.cfc_file = qComp[local.i]>
 				<cfset local.component_data.cfc_project = proj.proj_id>
 				<cfif local.component_data.cfc_name eq "">
 					<cfset local.component_data.cfc_name = local.component_data.cfc_file>
 				</cfif>
 
-				<cfdump var="#local.component_data#">
+				<cfset local.component_data.cfc_id = local.ComponentData.Create(local.component_data)>
+				<div class="component">#local.component_data.cfc_name#</div>
+
+				<!--- cffunction --->
+				<cfset local.component_functions = local.parser.GetFunctions()>
+				<cfloop from="1" to="#ArrayLen(local.component_functions)#" index="local.i">
+					<cfset local.component_functions[local.i].func_component = local.component_data.cfc_id>
+
+					<cfset local.component_functions[local.i].func_id = local.FunctionData.Create(local.component_functions[local.i])>
+					<div class="function">#local.component_functions[local.i].func_name#() #ArrayLen(local.component_functions[local.i].cfarguments)# args</div>
+
+					<!--- cfarguments --->
+					<cfloop from="1" to="#ArrayLen(local.component_functions[local.i].cfarguments)#" index="local.ii">
+						<cfset local.component_functions[local.i].cfarguments[local.ii].param_function = local.component_functions[local.i].func_id>
+						<cfset local.component_functions[local.i].cfarguments[local.ii].param_id = local.ParameterData.Create(local.component_functions[local.i].cfarguments[local.ii])>
+					</cfloop>
+				</cfloop>
+
 			</cfloop>
 
 		</cfoutput>

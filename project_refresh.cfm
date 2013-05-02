@@ -7,6 +7,9 @@
 	ross, 18/04/2013, creation
 
 --->
+<cfsetting requesttimeout="300">
+
+
 <cfparam name="url.proj_id" default="">
 <cfparam name="action" default="">
 

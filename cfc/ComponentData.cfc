@@ -46,7 +46,7 @@
 				'#arguments.component.cfc_hint#',
 				'#arguments.component.cfc_name#',
 				'#arguments.component.cfc_file#',
-				'#arguments.component.cfc_comments#',
+				'#Left(arguments.component.cfc_comments, 1024)#',
 				#val(arguments.component.cfc_project)#
 			)
 		</cfquery>
@@ -120,6 +120,38 @@
 		</cfquery>
 
 		<cfreturn local.q>
+	</cffunction>
+
+
+	<cffunction name="ClearProject">
+		<cfargument name="proj_id" required="yes">
+
+		<cfquery datasource="#global.DSN#">
+			DELETE FROM APP."parameter"
+			WHERE "param_function" IN (
+				SELECT "func_id"
+				FROM APP."function"
+				WHERE "func_component" IN (
+					SELECT "cfc_id"
+					FROM APP."component"
+					WHERE "cfc_project" = #val(arguments.proj_id)#
+				)
+			)
+		</cfquery>
+
+		<cfquery datasource="#global.DSN#">
+			DELETE FROM APP."function"
+			WHERE "func_component" IN (
+				SELECT "cfc_id"
+				FROM APP."component"
+				WHERE "cfc_project" = #val(arguments.proj_id)#
+			)
+		</cfquery>
+
+		<cfquery datasource="#global.DSN#">
+			DELETE FROM APP."component"
+			WHERE "cfc_project" = #val(arguments.proj_id)#
+		</cfquery>
 	</cffunction>
 
 
