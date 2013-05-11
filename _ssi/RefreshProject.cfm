@@ -21,6 +21,8 @@
 
 <div class="status">Found #num_components# components</div>
 
+
+
 <cfif num_components gt 0>
 	<div class="status">Begin scanning components at #DateFormat(now(), global.DateFormat)# #TimeFormat(now(), global.TimeFormat)#</div>
 	<cfset scanner.ScanComponents()>

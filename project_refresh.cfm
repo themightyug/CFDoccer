@@ -20,6 +20,8 @@
 
 <cfif IsDefined("form.BtnConfirm")>
 	<cfset action = "refresh">
+<cfelseif IsDefined("form.BtnConfirmSave")>
+	<cfset action = "save">
 <cfelse>
 	<cfset action = "confirm">
 </cfif>
@@ -71,6 +73,27 @@
 	<cfif action eq "refresh">
 		<code>
 			<cfinclude template="#global.path.includes#RefreshProject.cfm">
+		</code>
+
+		<form method="post">
+			<div class="dialogue">
+				<section class="body">
+					Ready to save HTML documentation for this project?
+				</section>
+				<section class="buttonRow">
+					<input type="submit" name="BtnConfirmSave" value=" Yes &gt; " />
+				</section>
+				<section class="working">
+					Working... <img src="#global.url.img#working.gif" alt="working" />
+				</section>
+			</div>
+		</form>
+	</cfif>
+
+
+	<cfif action eq "save">
+		<code>
+			<cfinclude template="#global.path.includes#SaveDocumentation.cfm">
 		</code>
 	</cfif>
 
