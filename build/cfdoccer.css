@@ -1,0 +1,235 @@
+@CHARSET "UTF-8";
+
+body {
+	margin: 0px;
+	padding: 0px;
+	width: 100%;
+	height: 100%;
+	font-family: Garamond, Verdana, Tahoma;
+	font-size: 9pt;
+	background-color: #86AECC;
+	color: white;
+}
+
+#bodyOuter {
+	width: 960px;
+	margin: auto;
+}
+
+#bodyInner {
+	-webkit-border-radius: 16px;
+	-moz-border-radius: 16px;
+	
+	-webkit-box-shadow: 0px 0px 10px 10px rgba(0, 0, 0, 0.2);
+	box-shadow: 0px 0px 10px 10px rgba(0, 0, 0, 0.2);
+	
+	border-radius: 16px;
+	background-color: #ffffff;
+	color: #134164;
+	padding: 20px;
+	margin: 20px;
+}
+
+#content {
+	padding: 20px;
+	margin: 0px;
+	border: 1px solid #86AECC;
+	
+	-webkit-border-radius: 16px;
+	-moz-border-radius: 16px;
+	
+	color: #39719A;
+}
+
+
+#msg {
+	margin: 14px 0px 20px 0px;
+	color: red;
+	font-weight: bold;
+}
+
+
+h1 {
+	margin-top: 0px;
+	color: #134164;
+}
+
+a, a:visited {
+	color: #294A63;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #638FB1;
+	text-decoration: underline;
+}
+
+nav {
+	margin-bottom: 12px;
+}
+
+nav a, nav a:visited {
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	padding: 4px;
+	background-color: #135064;
+	color: white;
+}
+
+nav a:hover {
+	color: #135064;
+	background-color: white;
+}
+
+
+table.dataGrid, table.dataForm {
+	width: 100%;
+	margin-top: 20px;
+}
+table caption {
+	-webkit-border-top-left-radius: 8px;
+	-webkit-border-top-right-radius: 8px;
+	-moz-border-radius-topleft: 8px;
+	-moz-border-radius-topright: 8px;
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
+
+	font-weight: bold;
+	background-color: #86AECC;
+	color: #134164;
+	padding: 4px;
+}
+table th {
+	background-color: #39719A;
+	color: white;
+}
+
+table.dataForm th {
+	text-align: right;
+	padding-right: 10px;
+}
+
+table.dataForm td {
+	width: 67%;
+}
+
+input[type=text], input[type=url] {
+	width: 90%;
+	border: solid 1px #134164;
+	padding: 4px;
+}
+
+input[type=submit] {
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	
+	border: solid 1px #134164;
+	
+	background-color: #39719A;
+	color: white;
+	
+	padding: 8px;
+	font-weight: bold;
+}
+input[type=submit]:hover {
+	background-color: #86AECC;
+	color: #134164;
+}
+
+.buttonRow {
+	text-align: right;
+}
+
+
+
+.dialogue {
+	width: 34%;
+	margin: auto;
+	padding: 20px;
+	border: 1px solid #134164;
+	color: #134164;
+	
+	-webkit-border-radius: 16px;
+	-moz-border-radius: 16px;
+	
+	-webkit-box-shadow: 0px 0px 10px 10px rgba(0, 0, 0, 0.2);
+	box-shadow: 0px 0px 10px 10px rgba(0, 0, 0, 0.2);
+}
+section.buttonRow {
+	margin-top: 20px;
+}
+
+.working {
+	display: none;
+	height: 32px;
+}
+.working IMG {
+	height: 32px;
+	width: 32px;
+	float: right;
+}
+
+
+.multiCols {
+	column-count: 3;
+	-moz-column-count: 3;
+	-webkit-column-count: 3;
+	column-gap: 20px;
+	-moz-column-gap: 20px;
+	-webkit-column-gap: 20px;
+}
+
+table {
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+}
+table.dataGrid th {
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+}
+table dataGrid th label {
+	
+}
+table.functionTable th {
+	text-align: left;
+	padding: 8px;
+}
+table.functionTable th H3 {
+	margin: 0px;
+}
+table.argTable {
+	margin: 0px 0px 10px 0px;
+	/*border-bottom: 1px solid #134164;*/
+	-webkit-border-radius: 0px;
+	-moz-border-radius: 0px;
+	border-radius: 0px;
+}
+table.argTable th {
+	background-color: white;
+	-webkit-border-radius: 0px;
+	-moz-border-radius: 0px;
+	border-radius: 0px;
+	color: #134164;
+	text-align: left;
+	padding: 0px;
+}
+.funcReturns {
+	margin-bottom: 16px;
+	color: #134164;
+}
+th.cfcHint {
+	text-align: left;
+	font-weight: normal;
+	padding: 10px;
+}
+.hint {
+	font-weight: bold;
+}
+th a {
+	color: black;	
+}
+pre {
+	color: gray;
+}

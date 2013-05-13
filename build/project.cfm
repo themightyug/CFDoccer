@@ -24,26 +24,49 @@
 <cfset ComponentData = CreateObject("component", "#global.CfcPrefix#ComponentData")>
 <cfset ComponentData.Init(global)>
 
+<cfset FunctionData = CreateObject("component", "#global.CfcPrefix#FunctionData")>
+<cfset FunctionData.Init(global)>
+
+<cfset ParameterData = CreateObject("component", "#global.CfcPrefix#ParameterData")>
+<cfset ParameterData.Init(global)>
+
 
 
 <cfset qProject = ProjectData.Select(url.id)>
 <cfset qComponent = ComponentData.SelectAll(url.id)>
 
 
+<cfset Page.CSS = "cfdoccer.css">
 <cfset Page.Title = "#qProject.proj_name# - Project Documentation">
-<cfinclude template="#global.Path.Includes#PageHeader.cfm">
+<cfinclude template="#global.Path.Includes#DocHeader.cfm">
 <cfoutput>
 
-
-	<cfloop query="qComponent">
-		<div class="component">
-			<div class="head">
-				<h2>#qComponent.cfc_name##iif(qComponent.cfc_hint neq "", de(" - #qComponent.cfc_hint#"), de(""))#</h2>
-
-			</div>
-		</div>
-	</cfloop>
-
+	<table class="dataGrid">
+		<cfloop query="qComponent">
+			<cfset qFunction = FunctionData.SelectAll(qComponent.cfc_id)>
+			<tr>
+				<th class="cfcName">
+					<h2><a href="#qComponent.cfc_file#.html" title="#qComponent.cfc_id#">#qComponent.cfc_name# &gt;</a></h2>
+				</th>
+				<th class="cfcHint">
+					<div class="hint">#iif(qComponent.cfc_hint neq "", "qComponent.cfc_hint", de(""))#</div>
+					<div>
+						#qFunction.RecordCount# functions
+					</div>
+				</th>
+			</tr>
+			<tr class="cfcSummary">
+				<td colspan="2">
+					<div class="multiCols">
+						<cfloop query="qFunction">
+							<cfset param_summary = Trim(ParameterData.GetParameterSummary(qFunction.func_id))>
+							<div title="#HtmlEditFormat(param_summary)#">#qFunction.func_name#()</div>
+						</cfloop>
+					</div>
+				</td>
+			</tr>
+		</cfloop>
+	</table>
 
 </cfoutput>
-<cfinclude template="#global.Path.Includes#PageFooter.cfm">
+<cfinclude template="#global.Path.Includes#DocFooter.cfm">

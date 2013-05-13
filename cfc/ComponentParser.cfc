@@ -184,7 +184,7 @@
 		<cfset var local = structnew()>
 		<cfset local.attr_value = "">
 
-		<cfset local.found = REFindNoCase("#arguments.attr_name#[\s]*=[\s]*\""[a-zA-Z0-9 ]+\""", arguments.tag, 1, true)>
+		<cfset local.found = REFindNoCase("#arguments.attr_name#[\s]*=[\s]*\""[a-zA-Z0-9 .,_\-]+\""", arguments.tag, 1, true)>
 		<cfif ArrayLen(local.found.pos) gt 0 and ArrayLen(local.found.len) gt 0>
 			<cfloop from="1" to="#ArrayLen(local.found.pos)#" index="local.i">
 				<cfif local.found.pos[local.i] gt 0 and local.found.len[local.i] gt 0>

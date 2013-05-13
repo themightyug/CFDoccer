@@ -60,11 +60,11 @@
 						<a href="?remove=#qProject.proj_id#">remove</a>
 					</td>
 					<td>
-						<a href="project_refresh.cfm?proj_id=#qProject.proj_id#">#iif(qProject.proj_refreshed eq "", de("never"), "qProject.proj_id")#</a>
+						<a href="project_refresh.cfm?proj_id=#qProject.proj_id#">#iif(qProject.proj_refreshed eq "", de("never"), "DateFormat(qProject.proj_refreshed, global.DateFormat)")#</a>
 					</td>
 					<td>
 						<cfif qProject.proj_refreshed neq "">
-							<a href="#qProject.proj_doc_url#">documentation</a>
+							<a href="#qProject.proj_doc_url#/index.html">documentation</a>
 						<cfelse>
 							&nbsp;
 						</cfif>

@@ -130,4 +130,20 @@
 	</cffunction>
 
 
+	<cffunction name="GetParameterSummary">
+		<cfargument name="func_id" required="yes">
+
+		<cfset var local = structnew()>
+		<cfset local.result = "">
+
+		<cfset local.qParam = SelectAll(arguments.func_id)>
+
+		<cfloop query="local.qParam">
+			<cfset local.result = ListAppend(local.result, "#local.qParam.param_type# #local.qParam.param_name##iif(local.qParam.param_required eq 1, de("*"), de(""))#")>
+		</cfloop>
+
+		<cfreturn local.result>
+	</cffunction>
+
+
 </cfcomponent>

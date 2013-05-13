@@ -42,6 +42,8 @@
 
 	<cfset Doccer.DocumentComponents(qComponents)>
 
+	<cfset ProjectData.UpdateRefreshed(qProject.proj_id)>
+	<div class="status">Documentation completed at #DateFormat(now(), global.DateFormat)# #TimeFormat(now(), global.TimeFormat)#</div>
 </cfif>
 
 </cfoutput>

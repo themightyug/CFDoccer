@@ -74,7 +74,7 @@
 		<cfargument name="proj_id" required="yes">
 
 		<cfquery datasource="#global.DSN#">
-			UPDATE APP."Project"
+			UPDATE APP."project"
 			SET
 				"proj_refreshed" = #CreateODBCDateTime(Now())#
 			WHERE
